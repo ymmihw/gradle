@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    id 'application'
 }
 
 group 'com.ymmihw.gradle'
@@ -11,4 +11,19 @@ repositories {
 }
 
 dependencies {
+    compile group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.10'
+    testImplementation('junit:junit:4.13')
+    testRuntime('junit:junit:4.13')
+}
+test {
+    useJUnit()
+}
+
+apply plugin: 'application'
+mainClassName = 'com.ymmihw.gradle.EmployeeApp'
+
+println 'This is executed during configuration phase'
+task configured {
+    println 'The project is configured'
 }

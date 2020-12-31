@@ -1,0 +1,27 @@
+plugins {
+    id "org.springframework.boot" version "2.4.1"
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.ymmihw.gradle'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter'
+}
+
+bootJar {
+    mainClass.set('com.ymmihw.gradle.App')
+}
+
+bootRun {
+    main = 'com.ymmihw.gradle.App'
+}

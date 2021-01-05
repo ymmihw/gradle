@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+apply plugin: com.ymmihw.gradle.GreetingPlugin
+group 'com.ymmihw.gradle'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile gradleApi()
+    testCompile group: 'junit', name: 'junit', version: '4.13.1'
+
+}
+
+greeting {
+    greeter = "Stranger"
+    message = "Message from the build script"
+}

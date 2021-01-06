@@ -1,0 +1,71 @@
+plugins {
+    id 'java'
+}
+
+group 'com.ymmihw.gradle'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+task welcome {
+    doLast {
+        println 'Welcome on the Baeldung!'
+    }
+}
+
+task welcomeWithGroup {
+    group 'Sample category'
+    doLast {
+        println 'Welcome on the Baeldung!'
+    }
+}
+
+task welcomeWithGroupAndDescription {
+    group 'Sample category'
+    description 'Tasks which shows welcome message'
+    doLast {
+        println 'Welcome on the Baeldung!'
+    }
+}
+
+class PrintToolVersionTask extends DefaultTask {
+    String tool
+
+    @TaskAction
+    void printToolVersion() {
+        switch (tool) {
+            case 'java':
+                println System.getProperty("java.version")
+                break
+            case 'groovy':
+                println GroovySystem.version
+                break
+            default:
+                throw new IllegalArgumentException("Unknown tool")
+        }
+    }
+}
+
+
+import com.ymmihw.gradle.PrintToolVersionBuildSrcTask
+
+task printJavaVersionBuildSrc(type : PrintToolVersionBuildSrcTask) {
+    tool 'java'
+}
+
+task printGroovyVersionBuildSrc(type : PrintToolVersionBuildSrcTask) {
+    tool 'groovy'
+}
+task printJavaVersion(type : PrintToolVersionTask) {
+    tool 'java'
+}
+
+task printGroovyVersion(type : PrintToolVersionTask) {
+    tool 'groovy'
+}
